@@ -17,7 +17,8 @@ ReadNumPyArray::fortranOrder = "Fortran order is not supported"
 
 Begin["Private`"]
 
-ReadNumPyArray[file_] := Module[{fs, formatVersion, headerLength, retVal},
+ReadNumPyArray[file_] := Module[{fs, formatVersion, headerLength, data, pyType,
+   fortranOrder, shape, dtype, headerDic, header, byteOrder, retVal},
    fs = OpenRead[file, BinaryFormat -> True];
    If[fs === $Failed, fs,
    
